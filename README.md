@@ -1,1 +1,1 @@
-# An Artificial Intelligence Page Builder for Vue.js
+# An Modular Page Builder for Vue.js
