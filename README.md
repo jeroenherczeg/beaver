@@ -1,2 +1,1 @@
-# beaver
-An Artificial Intelligence Page Builder for Vue.js
+# An Artificial Intelligence Page Builder for Vue.js
