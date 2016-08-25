@@ -26,3 +26,42 @@ import PageBuilder from 'vue-page-builder'
 - Carousel
 
 ## Custom Components
+
+## Example
+
+``` json
+{
+  content: [
+    {
+      section : [
+        {
+          row: [
+            {
+              component: "text",
+              column_size: 6,
+              column_offset: 0,
+              content: "Hello"
+            },
+            {
+              component: "text",
+              column_size: 6,
+              column_offset: 0,
+              content: "World"
+            }
+          ]
+        },
+        {
+          row: [
+            {
+              component: "img",
+              column_size: 12,
+              column_offset: 0,
+              content: "test.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
