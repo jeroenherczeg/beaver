@@ -13,3 +13,16 @@ $ npm install vue-page-builder --save
 ``` js
 import PageBuilder from 'vue-page-builder'
 ```
+
+## Components
+
+- Section
+- Row
+- Column
+- Text
+- Image
+- Video
+- Quote
+- Carousel
+
+## Custom Components
