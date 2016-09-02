@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html>
-	<head>
+<html lang="en">
+  	<head>
+    	<meta charset="utf-8">
 		<title>Beaver - A Modular Page Builder for Vue.js</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	</head>
 	<body>
-		<div id="app"></div>
+
+		<div id="app">
+			<PageBuilder :content="content"></PageBuilder>		
+		</div>
+
 		<script src="https://npmcdn.com/vue@next/dist/vue.js"></script>
+		<script>
+			import PageBuilder from '../src/PageBuilder.vue'
+
+			const vm = new Vue({
+				data: {
+					content: ''
+				},
+				components: {
+					PageBuilder
+				}
+			}).$mount('#app')
+		</script>
 	</body>
 </html>
