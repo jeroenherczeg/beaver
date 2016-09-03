@@ -1,4 +1,4 @@
-# A Modular Page Builder for Vue.js
+# A Modular Page Builder for Vue 2.0
 
 ## Install
 
