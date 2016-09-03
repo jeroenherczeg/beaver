@@ -1,17 +1,15 @@
-var vue = require('vue-loader')
-var webpack = require("webpack")
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
-var cssLoader = ExtractTextPlugin.extract("style-loader", "css-loader")
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
-  entry: {
-    app: './src/app.js'
-  },
+  entry: './src/app.js',
   output: {
-    path: './build',
-    publicPath: '/build/',
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
+  },
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules'),
   },
   module: {
     loaders: [
@@ -21,31 +19,29 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        // excluding some local linked packages.
-        // for normal use cases only node_modules is needed.
-        exclude: /node_modules|vue\/src|vue-router\/|vue-loader\/|vue-hot-reload-api\//,
-        loader: 'babel'
+        loader: 'babel',
+        exclude: /node_modules/
       },
-      { test: /\.css$/, loader: cssLoader }
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file',
+        query: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
     ]
   },
-  // vue: {
-  //   loaders: {
-  //     css: ExtractTextPlugin.extract("css"),
-  //     stylus: ExtractTextPlugin.extract("css!stylus")
-  //   }
-  // },
-  devtool: "#source-map",
-  babel: {
-    presets: ['es2015'],
-    plugins: ['transform-runtime']
-  }
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  devtool: '#eval-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
-  
-  delete module.exports.devtool
-  module.exports.plugins = [
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
@@ -55,13 +51,6 @@ if (process.env.NODE_ENV === 'production') {
       compress: {
         warnings: false
       }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin()
-    // new ExtractTextPlugin("build.css")
-  ]
-} else {
-  // module.exports.plugins = [
-  //   new ExtractTextPlugin("build.css")
-  // ]
-  // module.exports.devtool = '#source-map'
+    })
+  ])
 }

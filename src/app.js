@@ -1,15 +1,7 @@
+import Vue from 'vue'
 import PageBuilder from './PageBuilder.vue'
 
-Vue.config.debug = true
-
 new Vue({
-	el: '#app',
-	components: {
-    PageBuilder
-  },
-  data () {
-    return {
-   		content: ''
-    }
-  }
+  el: '#app',
+  render: h => h(PageBuilder)
 })
